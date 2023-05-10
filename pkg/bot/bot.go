@@ -14,9 +14,10 @@ type Bot struct {
 	Token      string
 	Connection *discordgo.Session
 	Commands   []commands.Command
+	Status     string
 }
 
-func NewBot(token string) (*Bot, error) {
+func NewBot(token, guildID string) (*Bot, error) {
 	dg, err := discordgo.New("Bot " + token)
 	if err != nil {
 		fmt.Println("Error creating Discord session: ", err)
@@ -26,6 +27,7 @@ func NewBot(token string) (*Bot, error) {
 	discordBot := &Bot{
 		Token:      token,
 		Connection: dg,
+		Status:     "up",
 		Commands: []commands.Command{
 			&commands.Ping{},
 			&commands.Pong{},
@@ -46,7 +48,7 @@ func (discordBot *Bot) Start() error {
 
 	fmt.Println("Bot is now running. Press CTRL-C to exit.")
 	sc := make(chan os.Signal, 1)
-	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt, os.Kill)
+	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt)
 	<-sc
 
 	discordBot.Connection.Close()
