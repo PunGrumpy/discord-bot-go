@@ -22,7 +22,6 @@ cd discord-bot-go
 
 ```bash
 BOT_TOKEN=your_bot_token
-GUILD_ID=your_guild_id
 ```
 
 3. Build the Docker image and start the services:

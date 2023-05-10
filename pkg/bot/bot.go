@@ -17,7 +17,7 @@ type Bot struct {
 	Status     string
 }
 
-func NewBot(token, guildID string) (*Bot, error) {
+func NewBot(token string) (*Bot, error) {
 	dg, err := discordgo.New("Bot " + token)
 	if err != nil {
 		fmt.Println("Error creating Discord session: ", err)
@@ -40,6 +40,8 @@ func NewBot(token, guildID string) (*Bot, error) {
 }
 
 func (discordBot *Bot) Start() error {
+	go discordBot.StartServer() // Start the HTTP server in a new goroutine
+
 	err := discordBot.Connection.Open()
 	if err != nil {
 		fmt.Println("Error opening connection: ", err)
@@ -48,9 +50,10 @@ func (discordBot *Bot) Start() error {
 
 	fmt.Println("Bot is now running. Press CTRL-C to exit.")
 	sc := make(chan os.Signal, 1)
-	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt)
+	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM)
 	<-sc
 
+	discordBot.Status = "down" // Set bot status to down when receiving a signal
 	discordBot.Connection.Close()
 
 	return nil
