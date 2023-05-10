@@ -1,0 +1,16 @@
+# Git
+.git
+
+# Go build
+bin/
+pkg/
+
+# Test binaries
+*.test
+
+# GoLand files
+.idea/
+
+# Environment variables
+.env
+

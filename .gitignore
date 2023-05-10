@@ -1,0 +1,32 @@
+# Binaries, plugins, libs
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Dependency directories
+vendor/
+
+# IDEs and editors
+/.idea
+*.swp
+*.*~
+/.vscode
+
+# OS-specific files and directories
+.DS_Store
+__MACOSX
+
+# Environment variables
+.env
+
+# GoLand files
+.idea/
+
