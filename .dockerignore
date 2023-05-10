@@ -1,16 +1,21 @@
-# Git
+# Docker ignore file
+*.md
 .git
-
-# Go build
-bin/
-pkg/
-
-# Test binaries
-*.test
-
-# GoLand files
-.idea/
-
-# Environment variables
+.gitignore
+Dockerfile
+docker-compose.yml
+*.log
+*.swp
+*.bak
+.vscode
+.idea
+__pycache__
+*.pyc
+*.pyo
+*.pyd
 .env
-
+*.sublime-project
+*.sublime-workspace
+node_modules
+/build
+/dist

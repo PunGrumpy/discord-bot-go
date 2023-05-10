@@ -1,32 +1,59 @@
-# Binaries, plugins, libs
+# Go
 *.exe
-*.exe~
-*.dll
-*.so
-*.dylib
-
-# Test binary
 *.test
-
-# Output of the go coverage tool
 *.out
+*.o
+*.a
+*.so
+*.dll
+*.dylib
+*.lib
+*.pdb
+*.exp
+*.bak
+*.swp
+*.[568vq]
+*.cgo1.go
+*.cgo2.c
+_cgo_defun.c
+_cgo_gotypes.go
+_cgo_export.*
+_testmain.go
+*.exe~
+*.test~
+*.out~
+*.gen.go
 
 # Dependency directories
 vendor/
+Godeps/
 
-# IDEs and editors
-/.idea
-*.swp
-*.*~
-/.vscode
+# IDEs
+.idea
+*.iml
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.bak
 
-# OS-specific files and directories
+# OS generated files
 .DS_Store
-__MACOSX
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Certificates
+*.key
+*.crt
+
+# Docker
+docker-compose.override.yml
 
 # Environment variables
 .env
-
-# GoLand files
-.idea/
-
