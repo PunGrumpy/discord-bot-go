@@ -10,3 +10,16 @@ services:
     volumes:
       - .:/discord-bot
     command: ['./main']
+
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - .:/discord-bot
+    command: ['./server']
+    ports:
+      - 8080:8080
