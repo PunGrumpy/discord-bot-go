@@ -7,26 +7,35 @@ import (
 	"syscall"
 
 	"github.com/PunGrumpy/discord-bot-go/pkg/commands"
+	"github.com/PunGrumpy/discord-bot-go/pkg/internal/database"
 	"github.com/bwmarrin/discordgo"
 )
 
 type Bot struct {
 	Token      string
 	Connection *discordgo.Session
+	Database   *database.Database
 	Commands   []commands.Command
 	Status     string
 }
 
-func NewBot(token string) (*Bot, error) {
-	dg, err := discordgo.New("Bot " + token)
+func NewBot(token string, mongoURI string) (*Bot, error) {
+	sessionBot, err := discordgo.New("Bot " + token)
 	if err != nil {
 		fmt.Println("Error creating Discord session: ", err)
 		return nil, err
 	}
 
+	mongodb, err := database.NewDatabase(mongoURI)
+	if err != nil {
+		fmt.Println("Error creating database: ", err)
+		return nil, err
+	}
+
 	discordBot := &Bot{
 		Token:      token,
-		Connection: dg,
+		Connection: sessionBot,
+		Database:   mongodb,
 		Status:     "up",
 		Commands: []commands.Command{
 			&commands.Ping{},

@@ -9,13 +9,14 @@ import (
 
 func main() {
 	token := env.LoadVar("BOT_TOKEN")
+	mongoURI := env.LoadVar("MONGO_URI")
 
 	if token == "" {
 		fmt.Println("No BOT_TOKEN environment variable found")
 		return
 	}
 
-	discordBot, err := bot.NewBot(token)
+	discordBot, err := bot.NewBot(token, mongoURI)
 	if err != nil {
 		fmt.Println("Error creating bot: ", err)
 		return
