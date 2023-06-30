@@ -24,6 +24,12 @@ cd discord-bot-go
 BOT_TOKEN=your_bot_token
 ```
 
+3. Create a `server.crt` and `server.key` file in the root of the project for HTTPS support. You can use the following command to generate a self-signed certificate:
+
+```bash
+openssl req -x509 -newkey rsa:4096 -keyout server.key -out server.crt -days 365 -nodes # 1 year
+```
+
 3. Build the Docker image and start the services:
 
 ```bash
